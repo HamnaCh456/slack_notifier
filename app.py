@@ -41,9 +41,11 @@ def scraper():
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def writing_email(bounties_data):
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=f"""You are provided with bounty data... (rest unchanged)""",
+    model = genai.GenerativeModel(model_name="gemini-2.5-flash")
+    response = model.generate_content( 
+        contents=f"""You are provided with bounty data. You must ONLY use the data provided below and nothing else. Do not invent or add any information not present in the data.
+                    Data: {bounties_data}
+                    Write a simple ,professional message(containing url ,amount,description of bounty/bounties,time since when its posted) about the highest paid bounty which is posted within 24 hours/1 day using ONLY the information provided above. If the data shows price ranges, mention the range exactly as given.If more than one bounty is having the same price range than mention them all in your message from the provided information ONLY.""",
     )
     return response.text
 
