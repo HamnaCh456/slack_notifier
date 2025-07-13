@@ -37,7 +37,8 @@ def scraper():
         timeout=120000  
     )  
     return llm_extraction_result.json
-
+    
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 def writing_email(bounties_data):
     model = genai.GenerativeModel(model_name="gemini-2.5-flash")
     response = model.generate_content( 
