@@ -5,7 +5,7 @@ from typing import List
 import requests
 from flask import Flask
 import json
-from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 load_dotenv()
 
