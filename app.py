@@ -38,8 +38,6 @@ def scraper():
     )  
     return llm_extraction_result.json
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
 def writing_email(bounties_data):
     model = genai.GenerativeModel(model_name="gemini-2.5-flash")
     response = model.generate_content( 
