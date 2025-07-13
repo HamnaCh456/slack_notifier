@@ -3,3 +3,4 @@ requests
 firecrawl
 pydantic
 google-generativeai
+python-dotenv
