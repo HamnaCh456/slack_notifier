@@ -44,14 +44,22 @@ def writing_email(bounties_data):
     response = model.generate_content( 
         contents=f"""You are provided with bounty data. You must ONLY use the data provided below and nothing else. Do not invent or add any information not present in the data.
                     Data: {bounties_data}
-                    Write a simple ,professional message(containing url ,amount,description of bounty/bounties,time since when its posted) about the highest paid bounty which is posted within 24 hours/1 day using ONLY the information provided above. If the data shows price ranges, mention the range exactly as given.If more than one bounty is having the same price range than mention them all in your message from the provided information ONLY.""",
+                    Instructions:
+                    1.Identify the bounty or bounties with the **highest payout amount** AND **posted within the last 24 hours (1 day)**.
+                    2.List only the single highest payout bounty but if there are multiple bounties with the same highest payout, list them all.
+                    2.Write a simple ,professional message(containing url ,amount,description of bounty/bounties,time since when its posted) without closing salutations about the highest paid bounty/bounties only and not all the bounties. 
+                   """,
     )
     return response.text
 
 def send_slack_message(message):
     slack_url = os.getenv("SLACK_WEBHOOK_URL")
     payload = '{"text":"%s"}' % message
-    return requests.post(slack_url, data=payload).text
+    final_output=requests.post(slack_url, data=payload)
+    if final_output.text=="ok":
+        return "Message is successfully sent to Slack!"
+    else:
+        return "Message is not sent to Slack!"
 
 @app.route('/', methods=['GET'])
 def driver_func():
