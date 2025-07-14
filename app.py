@@ -26,7 +26,7 @@ def scraper():
     
     json_config = JsonConfig(  
         schema=BountiesSchema,  
-        prompt="Extract the first 5 bounties from this page, including title, reward, posted date, and URL for each bounty"  
+        prompt="Extract the first 15 bounties from this page, including title, reward, posted date, and URL for each bounty"  
     )  
     
     llm_extraction_result = firecrawl_app.scrape_url(  
@@ -45,8 +45,8 @@ def writing_email(bounties_data):
         contents=f"""You are provided with bounty data. You must ONLY use the data provided below and nothing else. Do not invent or add any information not present in the data.
                     Data: {bounties_data}
                     Instructions:
-                    1.Identify the bounty or bounties with the **highest payout amount** AND **posted within the last 24 hours (1 day)**.
-                    2.List only the single highest payout bounty but if there are multiple bounties with the same highest payout, list them all.
+                    1.Identify and list the bounty or bounties with the highest reward AND are posted within 24 hours(1 day).
+                    2.List only the single highest reward bounty but if there are multiple bounties with the same highest reward, list them all.
                     2.Write a simple ,professional message(containing url ,amount,description of bounty/bounties,time since when its posted) without closing salutations about the highest paid bounty/bounties only and not all the bounties. 
                    """,
     )
