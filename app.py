@@ -61,7 +61,7 @@ def send_slack_message(message):
     else:
         return "Message is not sent to Slack!"
 
-@app.route('/', methods=['GET'])
+@app.route('/slack', methods=['GET'])
 def driver_func():
     result = scraper()
     bounties_data = json.dumps(result, indent=1)
