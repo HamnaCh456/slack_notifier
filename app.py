@@ -26,7 +26,7 @@ def scraper():
     
     json_config = JsonConfig(  
         schema=BountiesSchema,  
-        prompt="Extract the first 15 bounties from this page, including title, reward, posted date, and URL for each bounty"  
+        prompt="Extract the first 10 bounties from this page, including title, reward, posted date, and URL for each bounty"  
     )  
     
     llm_extraction_result = firecrawl_app.scrape_url(  
