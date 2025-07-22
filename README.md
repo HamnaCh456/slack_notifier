@@ -29,7 +29,7 @@ This is a Flask-based Python application that scrapes bounty listings from [Repl
 1. **Clone the Repository**
 
    ```bash
-   git clone [https://github.com/HamnaCh456/slack_notifier.git](https://github.com/HamnaCh456/slack_notifier.git)
+   git clone https://github.com/HamnaCh456/slack_notifier.git
    cd bounty-alert-bot
    ```
 2. **Install Requirements**
